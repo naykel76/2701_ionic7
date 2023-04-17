@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonItemSliding, IonList, IonicModule, ModalController } from '@ionic/angular';
 import { ModalContactPage } from '../modal-contact/modal-contact.page';
 
 @Component({
@@ -52,7 +52,7 @@ export class Tab1Page {
         return modal.present();
     }
 
-    async editContact(i: number) {
+    async editContact(i: number, slider: IonList) {
         console.log(i)
 
         const modal = await this.modal.create({
@@ -67,11 +67,13 @@ export class Tab1Page {
                 } else {
                     this.contacts[i] = res.data;
                 }
+            }).finally(() => {
+                slider.closeSlidingItems();
             });
 
         return modal.present();
-
     }
+
 
 
     delete(i: number) {
