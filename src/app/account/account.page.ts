@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -12,7 +13,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AccountPage implements OnInit {
 
-  constructor() { }
+  username: string;
+
+  constructor(private route: ActivatedRoute) {
+    this.username = this.route.snapshot.paramMap.get('username')!;
+  }
 
   ngOnInit() {
   }
