@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> <span>{{ editing === true ? 'Editing' : 'Create' }}</span> Contact</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input [(ngModel)]="contact.firstName" type="text" labelPlacement="floating" label="First Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="contact.lastName" type="text" labelPlacement="floating" label="Last Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="contact.email" type="email" label="Email" labelPlacement="floating" helperText="Enter a valid email" errorText="Invalid email" ngModel email></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="save()" expand="full" color="success">
+            Save
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="cancel()" expand="full" color="light">Cancel</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+</ion-content>
