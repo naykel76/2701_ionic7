@@ -20,17 +20,14 @@ export class ModalContactPage implements OnInit {
   }
 
   id?: number;
-  editing: boolean = false;
+  editing: boolean;
 
-  constructor(private modal: ModalController, private navParams: NavParams) { }
+  constructor(private modal: ModalController, private navParams: NavParams) {
+    this.editing = this.navParams.get('editing');
+  }
 
   ngOnInit() {
-    // if (this.navParams.get('contact') === true) {
-    //   this.editing = true;
-    // }
-
     console.log(this.navParams);
-    // console.log(this.editing)
   }
 
   /**

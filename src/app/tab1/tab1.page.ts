@@ -36,7 +36,7 @@ export class Tab1Page {
     async createContact() {
         const modal = await this.modal.create({
             component: ModalContactPage,
-            componentProps: {}
+            componentProps: { editing: false }
         })
 
         // 4. handle data when modal is closed (save).
@@ -57,7 +57,7 @@ export class Tab1Page {
 
         const modal = await this.modal.create({
             component: ModalContactPage,
-            componentProps: { id: i, contact: this.contacts[i] }
+            componentProps: { id: i, contact: this.contacts[i], editing: true }
         })
 
         modal.onDidDismiss()
