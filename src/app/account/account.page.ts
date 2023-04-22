@@ -5,21 +5,22 @@ import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.page.html',
-  styleUrls: ['./account.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+    selector: 'app-account',
+    templateUrl: './account.page.html',
+    standalone: true,
+    imports: [IonicModule, CommonModule, FormsModule]
 })
 export class AccountPage implements OnInit {
 
-  username: string;
+    username: string;
+    routeParamsSubscription;
 
-  constructor(private route: ActivatedRoute) {
-    this.username = this.route.snapshot.paramMap.get('username')!;
-  }
+    constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.routeParamsSubscription = this.route.params.subscribe(params => {
+            this.username = params['username']
+        })
+    }
 
 }
