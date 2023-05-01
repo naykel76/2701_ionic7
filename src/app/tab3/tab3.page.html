@@ -13,9 +13,16 @@
         </ion-toolbar>
     </ion-header>
 
+    <ion-button (click)="setValue('name', 'Bill')">Set Value</ion-button>
+    <ion-button (click)="getName()">Get Name</ion-button>
+    <ion-button (click)="removeValue('name')">Remove</ion-button>
+    <ion-button (click)="clearStorage()">Clear</ion-button>
+
+    {{name}}
+
     <ion-list>
         <ion-item>
-            <ion-input label="Name"/>
+            <ion-input label="Name" />
         </ion-item>
         <ion-item>
             <ion-toggle>Show Reminders</ion-toggle>
