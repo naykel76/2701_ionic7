@@ -12,16 +12,30 @@ import { StorageService } from '../services/storage.service';
 export class Tab3Page {
 
     name: any;
+    reminder: any;
+    showNotifications: any;
 
-    constructor(private storageService: StorageService) { }
+    constructor(private storageService: StorageService) {
 
-    async setValue(key: string, value: any) {
-        await this.storageService.set(key,  value);
+        this.getName();
+
     }
 
     async getName() {
         this.name = await this.storageService.get('name');
     }
+
+    // this.name = storageService.get('name');
+    // this.reminder = storageService.get('reminder');
+    // this.showNotifications = storageService.get('showNotifications');
+
+    async setValue(key: string, value: any) {
+        await this.storageService.set(key, value);
+    }
+
+    // async getName() {
+    //     this.name = await this.storageService.get('name');
+    // }
 
     async removeValue(key: string) {
         await this.storageService.remove(key);

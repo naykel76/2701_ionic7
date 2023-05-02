@@ -19,6 +19,8 @@
     <ion-button (click)="clearStorage()">Clear</ion-button>
 
     {{name}}
+    {{reminder}}
+    {{showNotifications}}
 
     <ion-list>
         <ion-item>
@@ -30,7 +32,7 @@
         <ion-item id="open-date-popover">
             <ion-icon name="calendar-outline" slot="start"></ion-icon>
             <ion-label>Reminder</ion-label>
-            <ion-text slot="end">{{reminder}}</ion-text>
+            <!-- <ion-text slot="end">{{reminder}}</ion-text> -->
         </ion-item>
         <!-- value is passed using the template reference '#bday' because
         dates are a pain in the butt and there is no useful documentation! -->
