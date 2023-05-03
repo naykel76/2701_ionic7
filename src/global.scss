@@ -1,3 +1,18 @@
+// @use "node_modules/nk_jtb/scss/base/vars_colors" as;
+@use "node_modules/nk_jtb/scss/base/vars_base" as *;
+@use "node_modules/nk_jtb/scss/base/vars_components" as *;
+
+@use "node_modules/nk_jtb/scss/components/box";
+
+@use "node_modules/nk_jtb/scss/utilities/display_visibility";
+@use "node_modules/nk_jtb/scss/utilities/flex";
+@use "node_modules/nk_jtb/scss/utilities/general";
+@use "node_modules/nk_jtb/scss/utilities/grid";
+@use "node_modules/nk_jtb/scss/utilities/position";
+@use "node_modules/nk_jtb/scss/utilities/sizes";
+@use "node_modules/nk_jtb/scss/utilities/spacing";
+@use "node_modules/nk_jtb/scss/utilities/text";
+@use "node_modules/nk_jtb/scss/utilities/themes";
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -16,7 +31,7 @@
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import '@ionic/angular/css/display.css';
+@import "@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
@@ -24,3 +39,5 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+

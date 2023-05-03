@@ -1,16 +1,12 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-  },
-  {
-    path: 'account/:username',
-    loadComponent: () => import('./account/account.page').then( m => m.AccountPage)
-  },  {
-    path: 'map',
-    loadComponent: () => import('./map/map.page').then( m => m.MapPage)
-  },
-
+    {
+        path: '',
+        loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    },
+    {
+        path: 'account/:username',
+        loadComponent: () => import('./account/account.page').then(m => m.AccountPage)
+    },
 ];
