@@ -8,5 +8,9 @@ export const routes: Routes = [
   {
     path: 'account/:username',
     loadComponent: () => import('./account/account.page').then( m => m.AccountPage)
+  },  {
+    path: 'map',
+    loadComponent: () => import('./map/map.page').then( m => m.MapPage)
   },
+
 ];

@@ -13,18 +13,18 @@
         </ion-toolbar>
     </ion-header>
 
-    <ion-button (click)="setValue('name', 'Bill')">Set Value</ion-button>
+    <!-- <ion-button (click)="setName('name', 'Bill')">Set Value</ion-button> -->
     <ion-button (click)="getName()">Get Name</ion-button>
     <ion-button (click)="removeValue('name')">Remove</ion-button>
     <ion-button (click)="clearStorage()">Clear</ion-button>
 
-    {{name}}
-    {{reminder}}
+    <div class="bx">{{name}}</div>
+    <div class="bx">{{reminder}}</div>
     {{showNotifications}}
 
     <ion-list>
         <ion-item>
-            <ion-input label="Name" />
+            <ion-input [(ngModel)]="name" label="Name" />
         </ion-item>
         <ion-item>
             <ion-toggle>Show Reminders</ion-toggle>

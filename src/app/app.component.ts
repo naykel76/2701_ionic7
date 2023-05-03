@@ -1,4 +1,4 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
+import { Component, EnvironmentInjector, inject, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { StorageService } from './services/storage.service';
@@ -10,21 +10,28 @@ import { StorageService } from './services/storage.service';
     standalone: true,
     imports: [IonicModule, CommonModule],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
     public environmentInjector = inject(EnvironmentInjector);
 
-    name;
-    showNotifications;
-    reminder;
+    constructor(private storageService: StorageService) { }
 
-    constructor(storageService: StorageService) {
-        this.name = storageService.set('name', 'Bill');
-        this.name = storageService.set('reminder', '27/05/2023');
-        this.name = storageService.set('showNotifications', true);
+    async ngOnInit() {
+
+        await this.storageService.get('name') === null
+            ? this.storageService.set('name', 'Paul')
+            : console.log(await this.storageService.get('name'));
+
+        await this.storageService.get('showNotifications') === null
+            ? this.storageService.set('showNotifications', true)
+            : console.log(await this.storageService.get('showNotifications'));
+
+        await this.storageService.get('reminder') === null
+            ? this.storageService.set('reminder', '18/05/23')
+            : console.log(await this.storageService.get('reminder'));
+
     }
 
-    //   <ion-button (click)="setValue('name', 'Bill')">Set Value</ion-button>
-    //   <ion-button (click)="getName()">Get Name</ion-button>
-    //   <ion-button (click)="removeValue('name')">Remove</ion-button>
-    //   <ion-button (click)="clearStorage()">Clear</ion-button>
 }
+
+

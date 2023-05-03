@@ -2,12 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicModule, IonPopover } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { StorageService } from '../services/storage.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-tab3',
     templateUrl: 'tab3.page.html',
     standalone: true,
-    imports: [IonicModule],
+    imports: [IonicModule, FormsModule],
 })
 export class Tab3Page {
 
@@ -15,27 +16,40 @@ export class Tab3Page {
     reminder: any;
     showNotifications: any;
 
+    // why won't you work in app.component.ts
     constructor(private storageService: StorageService) {
-
+        // this.setName()
         this.getName();
+    }
 
+    async setName() {
+        await this.storageService.set('name', 'Mike');
     }
 
     async getName() {
         this.name = await this.storageService.get('name');
+        console.log(this.name);
     }
 
-    // this.name = storageService.get('name');
-    // this.reminder = storageService.get('reminder');
-    // this.showNotifications = storageService.get('showNotifications');
+
+    async getReminder() {
+        this.reminder = await this.storageService.get('reminder');
+    }
+    async getShowNotifications() {
+        this.showNotifications = await this.storageService.get('showNotifications');
+    }
+
+    // this.setValue('name', 'Bill');
+    // this.setValue('reminder', '27/05/2023');
+    // this.setValue('showNotifications', true);
+
 
     async setValue(key: string, value: any) {
         await this.storageService.set(key, value);
     }
 
-    // async getName() {
-    //     this.name = await this.storageService.get('name');
-    // }
+
+    //
 
     async removeValue(key: string) {
         await this.storageService.remove(key);
