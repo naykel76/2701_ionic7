@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicModule, IonPopover } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { StorageService } from '../services/storage.service';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-tab3',
@@ -10,69 +11,39 @@ import { FormsModule } from '@angular/forms';
     standalone: true,
     imports: [IonicModule, FormsModule],
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
 
     name: any;
     reminder: any;
     showNotifications: any;
 
-    // why won't you work in app.component.ts
-    constructor(private storageService: StorageService) {
-        // this.setName()
-        this.getName();
-    }
+    constructor(private storageService: StorageService, private userService: UserService) { }
 
-    async setName() {
-        await this.storageService.set('name', 'Mike');
-    }
-
-    async getName() {
+    async ngOnInit() {
         this.name = await this.storageService.get('name');
-        console.log(this.name);
-    }
-
-
-    async getReminder() {
         this.reminder = await this.storageService.get('reminder');
-    }
-    async getShowNotifications() {
         this.showNotifications = await this.storageService.get('showNotifications');
     }
 
-    // this.setValue('name', 'Bill');
-    // this.setValue('reminder', '27/05/2023');
-    // this.setValue('showNotifications', true);
-
-
-    async setValue(key: string, value: any) {
-        await this.storageService.set(key, value);
+    // NK!! this is not the most efficient way because it will update all
+    // regardless
+    async update(){
+        await this.storageService.set('name', this.name);
+        await this.storageService.set('reminder', this.reminder);
+        await this.storageService.set('showNotifications', this.showNotifications);
     }
 
-
-    //
-
-    async removeValue(key: string) {
-        await this.storageService.remove(key);
-    }
-
+    // is there a way to call this method direct from the service??
     async clearStorage() {
         await this.storageService.clear();
+        console.log();
     }
 
-    // /**
-    //  * set reminder as human readable string
-    //  */
+    /**
+     * set reminder as human readable string
+     */
     setReminder(value) {
-        //     this.reminder = format(parseISO(value), 'dd/MM/yyyy');
+        this.reminder = format(parseISO(value), 'dd/MM/yyyy');
     }
 
 }
-
-// @ViewChild(IonPopover) popover: IonPopover;
-
-    // remember;
-    // showNotifications;
-
-    // name: string = 'Bill';
-    // remember: string = '22/05/2023';
-    // showNotifications: boolean = true;
