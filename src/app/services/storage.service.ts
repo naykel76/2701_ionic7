@@ -12,23 +12,23 @@ export class StorageService {
         await this.storage.create();
     }
 
-    public async set(key: string, value: any) {
+    async set(key: string, value: any) {
         let result = await this.storage?.set(key, value);
     }
 
-    public async get(key: string) {
+    async get(key: string) {
         return await this.storage?.get(key);
     }
 
-    public async remove(key: string) {
+    async remove(key: string) {
         let value = await this.storage?.remove(key);
     }
 
-    public async clear() {
+    async clear() {
         let value = await this.storage?.clear();
     }
 
-    public async keys() {
+    async keys() {
         return await this.storage?.keys();
     }
 }
