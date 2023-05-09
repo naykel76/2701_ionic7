@@ -27,6 +27,10 @@ export const routes: Routes = [
           import('../map/map.page').then((m) => m.MapPage),
       },
       {
+        path: 'chart',
+        loadComponent: () => import('../chart/chart.page').then( m => m.ChartPage)
+      },
+      {
         path: '',
         redirectTo: '/tabs/map',
         pathMatch: 'full',
