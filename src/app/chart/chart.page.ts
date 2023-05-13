@@ -1,47 +1,62 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Chart } from 'chart.js';
+import Chart from 'chart.js/auto';
 
 @Component({
     selector: 'app-chart',
-    templateUrl: './chart.page.html',
+    template: `
+    <ion-content [fullscreen]="true">
+            <ion-button (click)="manualTest()">Add Chart</ion-button>
+            <ion-card>
+                <canvas #myChart height=300></canvas>
+            </ion-card>
+    </ion-content>`,
     standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule]
+    imports: [IonicModule, CommonModule]
 })
-export class ChartPage {
+export class ChartPage implements OnInit {
 
-    @ViewChild('healthChart', { static: true }) canvas;
+    @ViewChild('myChart', { static: true }) canvas: any;
     chart: any;
 
-    constructor() { }
+    data = [
+        { age: 14, height: 110 },
+        { age: 15, height: 115 },
+        { age: 16, height: 118 },
+        { age: 17, height: 127 },
+        { age: 18, height: 142 }
+    ];
 
-    async AfterViewInit() {
-
-        const data = [
-            { year: 2010, count: 10 },
-            { year: 2011, count: 20 },
-            { year: 2012, count: 15 },
-            { year: 2013, count: 25 },
-            { year: 2014, count: 22 },
-            { year: 2015, count: 30 },
-            { year: 2016, count: 28 },
-        ];
-
+    ngOnInit() {
         this.chart = new Chart(this.canvas.nativeElement, {
             type: 'bar',
             data: {
-                labels: data.map(row => row.year),
+                labels: this.data.map(row => row.age),
                 datasets: [
                     {
-                        label: 'Acquisitions by year',
-                        data: data.map(row => row.count)
+                        label: 'Height by year',
+                        data: this.data.map(row => row.height)
                     }
                 ]
             }
         });
+    }
 
+    // if you add the chart manually there are no errors
+    manualTest() {
+        //     this.chart = new Chart(this.canvas.nativeElement, {
+        //         type: 'bar',
+        //         data: {
+        //             labels: this.data.map(row => row.year),
+        //             datasets: [
+        //                 {
+        //                     label: 'Acquisitions by year',
+        //                     data: this.data.map(row => row.count)
+        //                 }
+        //             ]
+        //         }
+        //     });
     }
 
 }

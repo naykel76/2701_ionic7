@@ -32,14 +32,14 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/map',
+        redirectTo: '/tabs/chart',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/map',
+    redirectTo: '/tabs/chart',
     pathMatch: 'full',
   },
 ];
