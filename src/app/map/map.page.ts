@@ -28,6 +28,23 @@ export class MapPage implements AfterViewInit {
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
         this.addMarker(latLng, 'Griffith')
+
+        this.currentLocation();
+    }
+
+    currentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                let pos = {
+                   lat: position.coords.latitude,
+                   lng: position.coords.longitude
+                }
+                this.map.setCenter(pos);
+            });
+        }
+        else {
+            alert("Geolocation not");
+        }
     }
 
     addMarker(position, title) {
@@ -47,4 +64,6 @@ export class MapPage implements AfterViewInit {
     }
 
 }
+
+
 
